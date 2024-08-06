@@ -1,0 +1,101 @@
+﻿<!doctype html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Processing Payment</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background-color: #f2f2f2;
+        }
+        .container {
+            text-align: center;
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+        }
+        .processing-icon, .failed-icon {
+            font-size: 50px;
+            color: #007BFF;
+            margin-bottom: 20px;
+            animation: spin 1s linear infinite;
+        }
+        .failed-icon {
+            color: red;
+            animation: none;
+        }
+        .processing-text, .failed-text {
+            font-size: 24px;
+            color: #333;
+        }
+        .retry-button {
+            display: none;
+            margin-top: 20px;
+            padding: 10px 20px;
+            font-size: 16px;
+            background-color: #007BFF;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        .retry-button:hover {
+            background-color: #0056b3;
+        }
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+        @media (max-width: 600px) {
+            .container {
+                padding: 15px;
+            }
+            .processing-icon, .failed-icon {
+                font-size: 40px;
+            }
+            .processing-text, .failed-text {
+                font-size: 20px;
+            }
+            .retry-button {
+                font-size: 14px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <i class="fa fa-spinner fa-spin processing-icon"></i>
+        <div class="processing-text">Processing Payment...</div>
+        <button class="retry-button" onclick="retryPayment()">Retry Payment</button>
+    </div>
+
+    <script>
+        function showFailedMessage() {
+            const icon = document.querySelector('.processing-icon');
+            const text = document.querySelector('.processing-text');
+            const button = document.querySelector('.retry-button');
+
+            icon.classList.remove('fa-spinner', 'fa-spin', 'processing-icon');
+            icon.classList.add('fa-times-circle', 'failed-icon');
+            text.classList.remove('processing-text');
+            text.classList.add('failed-text');
+            text.textContent = "Payment Failed. Please try again.";
+            button.style.display = 'block';
+        }
+
+        function retryPayment() {
+            window.location.href = 'index.html';
+        }
+
+        setTimeout(showFailedMessage, 30000);
+    </script>
+</body>
+</html>

@@ -1,0 +1,391 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Driver's License Application Form</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: auto;
+            padding: 20px;
+        }
+
+        .section {
+            display: none;
+            margin-bottom: 20px;
+        }
+
+        .section.active {
+            display: block;
+        }
+
+        .form-group {
+            margin-bottom: 15px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 5px;
+        }
+
+        input[type="text"],
+        input[type="email"],
+        input[type="date"],
+        input[type="number"],
+        input[type="tel"],
+        textarea,
+        select {
+            width: 100%;
+            padding: 8px;
+            margin: 5px 0;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+
+        textarea {
+            resize: vertical;
+        }
+
+        .btn-container {
+            text-align: center;
+            margin-top: 20px;
+        }
+
+        .btn {
+            background-color: #4CAF50;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+
+        .btn:disabled {
+            background-color: #ccc;
+        }
+
+        .btn:hover:not(:disabled) {
+            background-color: #45a049;
+        }
+
+        .error {
+            color: red;
+            display: none;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <h1>Driver's License Application Form</h1>
+        <form id="questionnaireForm">
+            <!-- Section 1: Personal Information -->
+            <div class="section active" id="section-1">
+                <h2>Part 1: Personal Information</h2>
+                <div class="form-group">
+                    <label for="fullName">Full Name:</label>
+                    <input type="text" id="fullName" name="fullName" required>
+                    <div class="error" id="fullNameError">Please enter your full name.</div>
+                </div>
+                <div class="form-group">
+                    <label for="dob">Date of Birth:</label>
+                    <input type="date" id="dob" name="dob" required>
+                    <div class="error" id="dobError">Please select your date of birth.</div>
+                </div>
+                <div class="form-group">
+                    <label for="address">Current Address:</label>
+                    <input type="text" id="address" name="address" required>
+                    <div class="error" id="addressError">Please enter your current address.</div>
+                </div>
+                <div class="form-group">
+                    <label for="phone">Phone Number:</label>
+                    <input type="tel" id="phone" name="phone" required>
+                    <div class="error" id="phoneError">Please enter your phone number.</div>
+                </div>
+                <div class="form-group">
+                    <label for="email">Email Address:</label>
+                    <input type="email" id="email" name="email" required>
+                    <div class="error" id="emailError">Please enter a valid email address.</div>
+                </div>
+            </div>
+
+            <!-- Section 2: Legal and Documentation Requirements -->
+            <div class="section" id="section-2">
+                <h2>Part 2: Legal and Documentation Requirements</h2>
+                <div class="form-group">
+                    <label>Current Driver's License Type:</label>
+                    <input type="text" id="licenseType" name="licenseType" required>
+                    <div class="error" id="licenseTypeError">Please enter your current driver's license type.</div>
+                </div>
+                <div class="form-group">
+                    <label>Previous Driver's Licenses (State/Country, if applicable):</label>
+                    <input type="text" id="prevLicenses" name="prevLicenses">
+                </div>
+                <div class="form-group">
+                    <label>Medical Conditions (if applicable):</label>
+                    <input type="text" id="medicalConditions" name="medicalConditions">
+                </div>
+                <div class="form-group">
+                    <label>Corrective Lenses Required:</label>
+                    <label><input type="radio" name="correctiveLenses" value="Yes"> Yes</label>
+                    <label><input type="radio" name="correctiveLenses" value="No"> No</label>
+                    <div class="error" id="correctiveLensesError">Please select an option.</div>
+                </div>
+            </div>
+
+            <!-- Section 3: Driving Experience and Education -->
+            <div class="section" id="section-3">
+                <h2>Part 3: Driving Experience and Education</h2>
+                <div class="form-group">
+                    <label for="driversEd">Driver's Education Course Completed (Yes/No, When, Where):</label>
+                    <input type="text" id="driversEd" name="driversEd" required>
+                    <div class="error" id="driversEdError">Please provide details of your driver's education course.</div>
+                </div>
+                <div class="form-group">
+                    <label for="formalLessons">Formal Driving Lessons Completed (Hours, Driving School):</label>
+                    <input type="text" id="formalLessons" name="formalLessons" required>
+                    <div class="error" id="formalLessonsError">Please provide details of your formal driving lessons.</div>
+                </div>
+                <div class="form-group">
+                    <label for="practiceHours">Practice Driving Hours Completed:</label>
+                    <input type="number" id="practiceHours" name="practiceHours" required>
+                    <div class="error" id="practiceHoursError">Please enter the number of practice driving hours.</div>
+                </div>
+                <div class="form-group">
+                    <label for="knowledgeTest">Written Knowledge Tests Passed (Yes/No, When, Where):</label>
+                    <input type="text" id="knowledgeTest" name="knowledgeTest" required>
+                    <div class="error" id="knowledgeTestError">Please provide details of the written knowledge tests passed.</div>
+                </div>
+            </div>
+
+            <!-- Section 4: Driving History -->
+            <div class="section" id="section-4">
+                <h2>Part 4: Driving History</h2>
+                <div class="form-group">
+                    <label>Motor Vehicle Accidents Involvement:</label>
+                    <label><input type="radio" name="accidents" value="Yes"> Yes</label>
+                    <label><input type="radio" name="accidents" value="No"> No</label>
+                    <div class="error" id="accidentsError">Please select an option.</div>
+                </div>
+                <div class="form-group">
+                    <label>Traffic Citations or Tickets Received:</label>
+                    <label><input type="radio" name="citations" value="Yes"> Yes</label>
+                    <label><input type="radio" name="citations" value="No"> No</label>
+                    <div class="error" id="citationsError">Please select an option.</div>
+                </div>
+                <div class="form-group">
+                    <label>Driving Privileges Suspended/Revoked:</label>
+                    <label><input type="radio" name="suspension" value="Yes"> Yes</label>
+                    <label><input type="radio" name="suspension" value="No"> No</label>
+                    <div class="error" id="suspensionError">Please select an option.</div>
+                </div>
+            </div>
+
+            <!-- Section 5: Specific Needs and Preferences -->
+            <div class="section" id="section-5">
+                <h2>Part 5: Specific Needs and Preferences</h2>
+                <div class="form-group">
+                    <label for="vehicleMake">Vehicle Make:</label>
+                    <input type="text" id="vehicleMake" name="vehicleMake" required>
+                    <div class="error" id="vehicleMakeError">Please enter the vehicle make.</div>
+                </div>
+                <div class="form-group">
+                    <label for="vehicleModel">Vehicle Model:</label>
+                    <input type="text" id="vehicleModel" name="vehicleModel" required>
+                    <div class="error" id="vehicleModelError">Please enter the vehicle model.</div>
+                </div>
+                <div class="form-group">
+                    <label for="vehicleYear">Vehicle Year:</label>
+                    <input type="number" id="vehicleYear" name="vehicleYear" required>
+                    <div class="error" id="vehicleYearError">Please enter the vehicle year.</div>
+                </div>
+                <div class="form-group">
+                    <label for="areasToPractice">Areas or Maneuvers Needing More Practice:</label>
+                    <input type="text" id="areasToPractice" name="areasToPractice">
+                </div>
+                <div class="form-group">
+                    <label for="testTiming">Preferred Timing for Driving Test:</label>
+                    <input type="text" id="testTiming" name="testTiming">
+                </div>
+                <div class="form-group">
+                    <label for="additionalQuestions">Additional Questions or Concerns:</label>
+                    <textarea id="additionalQuestions" name="additionalQuestions" rows="4"></textarea>
+                </div>
+            </div>
+
+            <!-- Section 6: Scheduling and Preparation -->
+            <div class="section" id="section-6">
+                <h2>Part 6: Scheduling and Preparation</h2>
+                <div class="form-group">
+                    <label for="availability">Availability for Driving Lessons and Practice Sessions:</label>
+                    <input type="text" id="availability" name="availability" required>
+                    <div class="error" id="availabilityError">Please enter your availability.</div>
+                </div>
+                <div class="form-group">
+                    <label for="bookingAssistance">Assistance Needed for Booking Tests (Yes/No):</label>
+                    <input type="text" id="bookingAssistance" name="bookingAssistance" required>
+                    <div class="error" id="bookingAssistanceError">Please indicate if you need assistance with booking tests.</div>
+                </div>
+                <div class="form-group">
+                    <label for="feesAware">Awareness of Fees and Payment Options (Yes/No):</label>
+                    <input type="text" id="feesAware" name="feesAware" required>
+                    <div class="error" id="feesAwareError">Please indicate your awareness of fees and payment options.</div>
+                </div>
+                <div class="form-group">
+                    <label for="studyMaterials">Recommendations for Study Materials Needed (Yes/No):</label>
+                    <input type="text" id="studyMaterials" name="studyMaterials" required>
+                    <div class="error" id="studyMaterialsError">Please indicate if you need recommendations for study materials.</div>
+                </div>
+            </div>
+  <!-- Section 7: Summary Form -->
+  <div class="section" id="section-7">
+    <h2>Part 7: Summary Form</h2>
+    <div class="form-group">
+        <label for="summaryFullName">Full Name:</label>
+        <input type="text" id="summaryFullName" name="summaryFullName" required>
+    </div>
+    <div class="form-group">
+        <label for="summaryDob">Date of Birth:</label>
+        <input type="date" id="summaryDob" name="summaryDob" required>
+    </div>
+    <div class="form-group">
+        <label for="summaryLicenseType">Current Driver's License Type:</label>
+        <input type="text" id="summaryLicenseType" name="summaryLicenseType" required>
+    </div>
+    <!-- New Fields for Upload -->
+    <div class="form-group">
+        <label for="selfiePhoto">Upload Selfie Photo:</label>
+        <input type="file" id="selfiePhoto" name="selfiePhoto" accept="image/*" required>
+        <div class="error" id="selfiePhotoError">Please upload a selfie photo (Max: 1MB).</div>
+    </div>
+    <div class="form-group">
+        <label for="proofOfAddress">Upload Proof of Address:</label>
+        <input type="file" id="proofOfAddress" name="proofOfAddress" accept=".pdf,.jpg,.jpeg,.png" required>
+        <div class="error" id="proofOfAddressError">Please upload proof of address (Max: 1MB).</div>
+    </div>
+    <div class="form-group">
+        <label for="birthCertificate">Upload Birth Certificate/Passport:</label>
+        <input type="file" id="birthCertificate" name="birthCertificate" accept=".pdf,.jpg,.jpeg,.png" required>
+        <div class="error" id="birthCertificateError">Please upload a birth certificate or passport (Max: 1MB).</div>
+    </div>
+</div>
+
+            <!-- Section 8: Document Processing Fee -->
+            <div class="section" id="section-8">
+                <h2>Part 8: Document Processing Fee</h2>
+                <p>Please note that there is a document processing fee of $5 to complete your application and provide personalized assistance.</p>
+                <p>This fee helps cover the cost of processing your information and ensuring you receive the best possible guidance for obtaining your driver's license. Thank you for your understanding and cooperation.</p>
+                <div class="form-group">
+                    <label for="paymentMethod">Payment Method:</label>
+                    <select id="paymentMethod" name="paymentMethod" required>
+                        <option value="">Select a payment method</option>
+                        <option value="Credit Card">Credit Card</option>
+                        <option value="Debit Card">Debit Card</option>
+                    </select>
+                    <div class="error" id="paymentMethodError">Please select a payment method.</div>
+                </div>
+            </div>
+
+            <!-- Navigation Buttons -->
+            <div class="btn-container">
+                <button type="button" class="btn" id="prevButton" onclick="navigate(-1)">Previous</button>
+                <button type="button" class="btn" id="nextButton" onclick="navigate(1)">Next</button>
+                <button type="submit" class="btn" id="submitButton">Submit</button>
+            </div>
+        </form>
+    </div>
+
+    <script>
+        let currentSection = 1;
+
+        function showSection(sectionNumber) {
+            const sections = document.querySelectorAll('.section');
+            sections.forEach((section, index) => {
+                section.classList.toggle('active', index === sectionNumber - 1);
+            });
+            updateButtonState();
+        }
+
+        function navigate(step) {
+            const sectionId = `section-${currentSection}`;
+            const currentSectionElement = document.getElementById(sectionId);
+
+            if (!validateSection(currentSectionElement)) {
+                return;
+            }
+
+            currentSection += step;
+            if (currentSection < 1) currentSection = 1;
+            if (currentSection > 8) currentSection = 8;
+
+            showSection(currentSection);
+        }
+
+        function validateSection(sectionElement) {
+    const inputs = sectionElement.querySelectorAll('input[required], textarea[required], select[required]');
+    let valid = true;
+
+    inputs.forEach(input => {
+        const errorElement = document.getElementById(`${input.id}Error`);
+        if (errorElement) { // Check if the error element exists before accessing it
+            if (input.type === 'radio') {
+                const radioGroupName = input.name;
+                const radioGroup = sectionElement.querySelectorAll(`input[name="${radioGroupName}"]`);
+                if (!Array.prototype.some.call(radioGroup, radio => radio.checked)) {
+                    errorElement.style.display = 'block';
+                    valid = false;
+                } else {
+                    errorElement.style.display = 'none';
+                }
+            } else if (input.type === 'file') {
+                const file = input.files[0];
+                if (file && file.size > 1048576) { // 1MB = 1048576 bytes
+                    errorElement.style.display = 'block';
+                    valid = false;
+                } else {
+                    errorElement.style.display = 'none';
+                }
+            } else {
+                if (input.value.trim() === '') {
+                    errorElement.style.display = 'block';
+                    valid = false;
+                } else {
+                    errorElement.style.display = 'none';
+                }
+            }
+        }
+    });
+
+    return valid;
+}
+
+        function updateButtonState() {
+            document.getElementById('prevButton').style.display = currentSection === 1 ? 'none' : 'inline-block';
+            document.getElementById('nextButton').style.display = currentSection === 8 ? 'none' : 'inline-block';
+            document.getElementById('submitButton').style.display = currentSection === 8 ? 'inline-block' : 'none';
+        }
+
+        document.addEventListener('DOMContentLoaded', () => {
+            showSection(currentSection);
+        });
+
+        document.getElementById('questionnaireForm').addEventListener('submit', (event) => {
+            event.preventDefault();
+            if (validateSection(document.getElementById(`section-${currentSection}`))) {
+                window.location.href = 'payment.html'; // Redirect to the payment page
+            }
+        });
+    </script>
+
+</body>
+
+</html>
